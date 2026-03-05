@@ -5,10 +5,6 @@ import Vista.Vista;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
-
-import static Vista.Vista.*;
 
 public class Evento {
     public static Evento[] eventos = new Evento[20];
@@ -122,24 +118,38 @@ public class Evento {
         this.entrada = entrada;
     }
 
+
+    public static Evento buscaEventoPorID(int idEvento){
+        for (int i = 0; i < getCantEventosCreados(); i++) {
+            if (eventos[i].getIdEvento()==idEvento) return eventos[i];
+        }
+        return null;
+    }
+
+
+
+
     public String vistaDetalladaEvento() {
         return Vista.vistaDetalladaEvento((double) (getNumInscritos() * 100) / getAforo());
     }
 
-
-
-
-
-    public String muestraEventos(){
-
+    public void modificaEvento(String nombre, String descripcion, String categoria, LocalDate fecha, LocalTime hora, int aforo){
+        setNombre(nombre);
+        setDescripcion(descripcion);
+        setCategoria(categoria);
+        setFecha(fecha);
+        setHora(hora);
+        setAforo(aforo);
+        Vista.muestraMensaje(nombre + " ha sido modificado con éxito");
     }
 
 
-    public void creaEvento(){
 
+    public void muestraEventos(){
+        for (int i = 0; i < getCantEventosCreados(); i++) {
+            Vista.muestraMensaje(eventos[i].toString());
+        }
     }
-
-
 
 
 
