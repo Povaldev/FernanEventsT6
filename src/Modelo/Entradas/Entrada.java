@@ -8,7 +8,6 @@ public class Entrada {
     public Entrada(double precio, int stock){
         this.precio = precio;
         this.stock = stock;
-        this.entradas = new Entrada[stock];
     }
 
     public boolean compraEntrada(){
