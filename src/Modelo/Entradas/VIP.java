@@ -1,17 +1,11 @@
 package Modelo.Entradas;
 
-public class  VIP extends Entrada{
-
-    private double precio;
-    private int entradasRestantes;
+public class VIP extends Entrada{
 
     public VIP(double precio, int entradasRestantes){
         super(precio, entradasRestantes);
     }
 
-    public boolean compraEntrada(){
-        this.setStock(getStock()-1);
-    }
 
 
 }

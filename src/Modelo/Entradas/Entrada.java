@@ -1,7 +1,7 @@
 package Modelo.Entradas;
 
 public class Entrada {
-    public Entrada[] entradas;
+    public static Entrada[] entradas;
     private double precio;
     private int stock;
 
@@ -12,7 +12,11 @@ public class Entrada {
     }
 
     public boolean compraEntrada(){
-        this.stock--;
+        if (getStock()>0){
+            this.stock--;
+            return true;
+        }
+        return false;
     }
 
     public double getPrecio() {
