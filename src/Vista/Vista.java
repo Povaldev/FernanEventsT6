@@ -1,6 +1,20 @@
 package Vista;
 
 public class Vista {
+
+    public static int menuGeneral(){
+
+        System.out.println("Bienvenido a FernanEvents, ¿Como deseas acceder?");
+        System.out.println("1--Administrador");
+        System.out.println("2--Organizador");
+        System.out.println("3--Asistente 1");
+        System.out.println("5--Salir");
+        int opcion = Integer.parseInt(sc.next());
+        return opcion;
+
+    }
+
+
     public static String menuAsistente(){
 
     }
