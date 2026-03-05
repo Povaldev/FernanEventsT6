@@ -39,8 +39,6 @@ public class Controlador {
         LocalTime hora = LocalTime.parse(horaStr, formatoh);
         System.out.print("Introduce el aforo máximo permitido del evento: ");
         int aforo = s.nextInt();
-        return new Evento();
-        //int idEvento = generaIDsEventos;
-        //cantEventosCreados++;
+        return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
     }
 }

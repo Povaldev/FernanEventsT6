@@ -22,7 +22,14 @@ public class Evento {
 
 
     public Evento(String nombre, String descripcion, String categoria, LocalDate fecha, LocalTime hora, int aforo){
-
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.aforo = aforo;
+        this.idEvento = generaIDsEventos++;
+        cantEventosCreados++;
     }
 
 
