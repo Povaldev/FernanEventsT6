@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Usuario;
 
 public class Asistente extends Usuario {
 
