@@ -13,9 +13,9 @@ public class Controlador {
 
     public static Evento creaEvento(){
         Scanner s = new Scanner(System.in);
-        System.out.print("Introduce el nombre del evento: ");
+        Vista.Vista.muestraMensaje("Introduce el nombre del evento: ");
         String nombre = s.nextLine();
-        System.out.print("Escribe la descripción del evento: ");
+        Vista.Vista.muestraMensaje("Escribe la descripción del evento: ");
         String descripcion = s.nextLine();
         muestraCategoria();
         int opcion = Integer.parseInt(s.nextLine());
@@ -29,16 +29,19 @@ public class Controlador {
             case 7 -> "Moda";
             default -> "";
         };
-        System.out.print("Introduzca la fecha del evento: ");
+        Vista.Vista.muestraMensaje("Introduzca la fecha del evento: ");
         String fechaStr = s.nextLine();
         DateTimeFormatter formatof = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fecha = LocalDate.parse(fechaStr, formatof);
-        System.out.print("Introduce la hora del evento: ");
+        Vista.Vista.muestraMensaje("Introduce la hora del evento: ");
         String horaStr = s.nextLine();
         DateTimeFormatter formatoh = DateTimeFormatter.ofPattern("HH:mm");
         LocalTime hora = LocalTime.parse(horaStr, formatoh);
-        System.out.print("Introduce el aforo máximo permitido del evento: ");
+        Vista.Vista.muestraMensaje("Introduce el aforo máximo permitido del evento: ");
         int aforo = s.nextInt();
         return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
     }
+
+
+
 }

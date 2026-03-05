@@ -44,17 +44,37 @@ public class Vista {
     }
 
     public static void muestraCategoria(){
-        String muestraCategoria = "Introduce la categoría del evento";
-        muestraCategoria += "1. Arte";
-        muestraCategoria += "2. Tecnología";
-        muestraCategoria += "3. Cine";
-        muestraCategoria += "4. Música";
-        muestraCategoria += "5. Juegos";
-        muestraCategoria += "6. Comida";
-        muestraCategoria += "7. Moda";
+        String muestraCategoria = "Introduce la categoría del evento\n";
+        muestraCategoria += "1. Arte\n";
+        muestraCategoria += "2. Tecnología\n";
+        muestraCategoria += "3. Cine\n";
+        muestraCategoria += "4. Música\n";
+        muestraCategoria += "5. Juegos\n";
+        muestraCategoria += "6. Comida\n";
+        muestraCategoria += "7. Moda\n";
         muestraMensaje(muestraCategoria);
     }
 
+
+
+
+    public static String vistaDetalladaEvento(double porcentajeOcupacion) {
+        String vistaDetalladaEvento = "";
+        vistaDetalladaEvento += "════════════════════\n";
+        vistaDetalladaEvento += "║";
+        for (int i = 0; i < (porcentajeOcupacion / 5); i++) {
+            vistaDetalladaEvento += "█";
+        }
+        for (int i = 0; i < (100 - porcentajeOcupacion) / 5; i++) {
+            vistaDetalladaEvento += " ";
+        }
+        vistaDetalladaEvento += "║\n";
+        vistaDetalladaEvento += porcentajeOcupacion + "% de Ocupación\n";
+        vistaDetalladaEvento += "════════════════════\n";
+        //vistaEntradasYPrecios(idEvento);
+
+        return vistaDetalladaEvento;
+    }
 
 
 
