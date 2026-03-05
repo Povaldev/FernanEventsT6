@@ -2,13 +2,14 @@ package Modelo.Entradas;
 
 public class Entrada {
     public static Entrada[] entradas;
+    private int EventoID;
     private double precio;
     private int stock;
 
-    public Entrada(double precio, int stock){
+    public Entrada(double precio, int stock, int EventoID){
         this.precio = precio;
         this.stock = stock;
-        this.entradas = new Entrada[stock];
+        this.EventoID = EventoID;
     }
 
     public boolean compraEntrada(){
