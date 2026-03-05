@@ -12,6 +12,7 @@ public class Vista {
         int opcion = Integer.parseInt(sc.next());
         return opcion;
 
+
     }
 
 
