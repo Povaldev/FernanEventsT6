@@ -63,5 +63,13 @@ public class Vista {
     }
 
 
+    public static void creaEntrada(int idEvento){
+        Vista.muestraMensaje("- Selecciona las entradas que tendrá el evento");
+        System.out.println("1. General");
+        System.out.println("2. General y Premium");
+        System.out.println("3. General, Premium y VIP");
+    }
+
+
 
 }

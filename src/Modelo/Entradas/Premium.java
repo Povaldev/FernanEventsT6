@@ -1,8 +1,8 @@
-package Modelo.Entradas;
-
-public class Premium extends Entrada{
-
-    public Premium(double precio, int entradasRestantes, int EventoID){
-        super(precio, entradasRestantes, EventoID);
-    }
-}
+//package Modelo.Entradas;
+//
+//public class Premium extends Entrada{
+//
+//    public Premium(double precio, String descripcion, int stock, int EventoID){
+//        super(precio, descripcion, stock, EventoID);
+//    }
+//}

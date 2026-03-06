@@ -126,6 +126,12 @@ public class Evento {
         return null;
     }
 
+    public static int buscaPosicionPorID(int idEvento){
+        for (int i = 0; i < getCantEventosCreados(); i++) {
+            if (eventos[i].getIdEvento() == idEvento) return i;
+        }
+        return -1;
+    }
 
 
 
@@ -143,7 +149,10 @@ public class Evento {
         Vista.muestraMensaje(nombre + " ha sido modificado con éxito");
     }
 
-
+    public static void eliminaEvento(int idEvento){
+        eventos[idEvento] = eventos[getCantEventosCreados()];
+        eventos[getCantEventosCreados()] = null;
+    }
 
 
 
