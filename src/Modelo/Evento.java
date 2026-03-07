@@ -134,7 +134,6 @@ public class Evento {
     }
 
 
-
     public String vistaDetalladaEvento() {
         return Vista.vistaDetalladaEvento((double) (getNumInscritos() * 100) / getAforo());
     }
