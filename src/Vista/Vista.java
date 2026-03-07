@@ -1,40 +1,63 @@
 package Vista;
 
+import java.util.Scanner;
+
 public class Vista {
 
-    public static int menuGeneral(){
-
-        System.out.println("Bienvenido a FernanEvents, ¿Como deseas acceder?");
-        System.out.println("1--Administrador");
-        System.out.println("2--Organizador");
-        System.out.println("3--Asistente 1");
-        System.out.println("5--Salir");
-        int opcion = Integer.parseInt(sc.next());
-        return opcion;
-
-
+    public static String menuGeneral(){
+        String muestra = "" +
+                "███████╗███████╗██████╗  ███╗   ██╗ █████╗ ███╗   ██╗\n" +
+                "██╔════╝██╔════╝██╔══██╗ ████╗  ██║██╔══██╗████╗  ██║\n" +
+                "█████╗  █████╗  ██████╔╝ ██╔██╗ ██║███████║██╔██╗ ██║\n" +
+                "██╔══╝  ██╔══╝  ██╔══██╗ ██║╚██╗██║██╔══██║██║╚██╗██║\n" +
+                "██║     ███████╗██║  ██║ ██║ ╚████║██║  ██║██║ ╚████║\n" +
+                "╚═╝     ╚══════╝╚═╝  ╚═╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝\n" +
+                "███████╗██╗     ██╗███╗   ██╗███████╗███╗   ██╗████████╗███████╗\n" +
+                "██╔════╝╚██╗   ██╔╝████╗  ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝\n" +
+                "█████╗   ╚██╗ ██╔╝ ██╔██╗ ██║█████╗  ██╔██╗ ██║   ██║   ███████╗\n" +
+                "██╔══╝    ╚████╔╝  ██║╚██╗██║██╔══╝  ██║╚██╗██║   ██║   ╚════██║\n" +
+                "███████╗   ╚██╔╝   ██║ ╚████║███████╗██║ ╚████║   ██║   ███████║\n" +
+                "╚══════╝    ╚═╝    ╚═╝   ╚══╝╚══════╝╚═╝   ╚══╝   ╚═╝   ╚══════╝\n\n" +
+                "             G E S T I Ó N   D E   E V E N T O S\n";
+        muestra += "Bienvenido a FernanEvents, ¿Como deseas acceder?";
+        muestra += "1--Administrador";
+        muestra += "2--Organizador";
+        muestra += "3--Asistente";
+        muestra += "4--Salir";
+        return muestra;
     }
 
 
     public static String menuAsistente(){
-
+        String muestra = "Bienvenido al Administrador";
+        muestra += "1--Panel de control";
+        muestra += "2--Eventos";
+        muestra += "3--Cartera Digital";
+        muestra += "4--Configuración";
+        muestra += "5--Cerrar sesión";
+        return muestra;
     }
 
     public static String menuOrganizador(){
-
+        String muestra = "Bienvenido al Organizador";
+        muestra += "1--Mis eventos";
+        muestra += "2--Cartera digital";
+        muestra += "3__Configuración";
+        muestra += "4--Cerrar sesión";
+        return muestra;
     }
 
     public static String menuAdministrador(){
-
+        String muestra = "Bienvenido al Asistente ";
+        muestra += "1--Mis eventos";
+        muestra += "2--Eventos";
+        muestra += "3--Cartera digital";
+        muestra += "4--Invita a un amigo";
+        muestra += "5__Configuración";
+        muestra += "6--Cerrar sesión";
+        return muestra;
     }
 
-    public static String vistaEvento(){
-
-    }
-
-    public static String vistaDetalladaEvento(){
-
-    }
 
     public static String inscripcionEventoPago(){
 
@@ -77,6 +100,12 @@ public class Vista {
         return vistaDetalladaEvento;
     }
 
+
+//    public static void muestraNombresDeEventos(){
+//        for (int i = 0; i < Evento.getCantEventosCreados(); i++) {
+//            muestraMensaje();
+//        }
+//    }
 
     public static void creaEntrada(int idEvento){
         Vista.muestraMensaje("- Selecciona las entradas que tendrá el evento");

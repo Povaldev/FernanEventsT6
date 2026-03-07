@@ -1,7 +1,6 @@
 package Controlador;
 
-import Modelo.Entradas.Entrada;
-import Modelo.Entradas.TipoEntrada;
+import Modelo.Entradas.*;
 import Modelo.Evento;
 import Vista.*;
 
@@ -11,10 +10,42 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static Modelo.Evento.*;
-import static Vista.Vista.muestraCategoria;
+import static Vista.Vista.*;
 
 public class Controlador{
     static Scanner s = new Scanner(System.in);
+
+
+    public static void Bienvenida(){
+        int opcion = 0;
+        do {
+            Vista.muestraMensaje(menuGeneral());
+            do {
+                switch (opcion){
+                    case 1:
+                        Vista.muestraMensaje(Vista.menuAdministrador());
+                        opcion = s.nextInt();
+                        break;
+                    case 2:
+                        Vista.muestraMensaje(Vista.menuOrganizador());
+                        opcion = s.nextInt();
+                        break;
+                    case 3:
+                        Vista.muestraMensaje(Vista.menuAsistente());
+                        opcion = s.nextInt();
+                        break;
+                    case 4:
+                        Vista.muestraMensaje("Abandonando el programa...");
+                        break;
+                    default:
+                        Vista.muestraMensaje("Por favor, introduce alguna de las opciones que se muestran");
+                        break;
+                }
+            } while (opcion > 1 && opcion  3);
+        } while (opcion == 4);
+
+    }
+
 
     public static Evento creaEvento(){
         Vista.muestraMensaje("Introduce el nombre del evento: ");
@@ -114,26 +145,41 @@ public class Controlador{
         int stock = s.nextInt();
         Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
     }
+
+
+//    public static int seleccionEventoPorNombre(){
+//       for (int i = 0; i < eventoCreado.length; i++) {
+//            if (eventoCreado[i]) {
+//                System.out.println(idEvento[i] + ". " + nombreEvento[i]);
+//            }
+//       }
+//
+//
+//        int seleccionUsuario = s.nextInt();
+//
+//        for (int i = 0; i < eventoCreado.length; i++) if (seleccionUsuario == idEvento[i]) return i;
+//        System.out.println("El ID introducido no existe");
+//        return -1;
+//    }
+
+
+
+    public static void iniciaSesion(){
+
+    }
+
+
+    public static void cambiaContrasena(){
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

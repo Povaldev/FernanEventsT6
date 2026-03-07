@@ -154,15 +154,11 @@ public class Evento {
     }
 
 
-
     public void muestraEventos(){
         for (int i = 0; i < getCantEventosCreados(); i++) {
             Vista.muestraMensaje(eventos[i].toString());
         }
     }
-
-
-
 
 
 

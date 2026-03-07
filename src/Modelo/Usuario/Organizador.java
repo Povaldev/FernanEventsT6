@@ -1,11 +1,23 @@
 package Modelo.Usuario;
 
-public class Organizador extends Usuario {
+public class Organizador extends Usuario implements Bloqueable{
 
-    private double cartera;
 
-    public Organizador(String nombre, String contrasena, String correo, double cartera) {
+    public Organizador(String nombre, String contrasena, String correo) {
         super(nombre, contrasena, correo);
-        this.cartera = cartera;
+
+
+
+
+    }
+
+    @Override
+    public void bloquear() {
+
+    }
+
+    @Override
+    public void desbloquear() {
+
     }
 }

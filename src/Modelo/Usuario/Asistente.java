@@ -1,11 +1,21 @@
 package Modelo.Usuario;
 
-public class Asistente extends Usuario {
+public class Asistente extends Usuario implements Bloqueable{
 
-    private double cartera;
-
-    public Asistente(String nombre, String contrasena, String correo, double cartera) {
+    public Asistente(String nombre, String contrasena, String correo) {
         super(nombre, contrasena, correo);
-        this.cartera = cartera;
+
+
+
+    }
+
+    @Override
+    public void bloquear() {
+
+    }
+
+    @Override
+    public void desbloquear() {
+
     }
 }
