@@ -35,7 +35,7 @@ public class Controlador{
     public static void menuAdministrador(){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
-            case 1 -> misEventos
+            case 1 ->
             case 2 ->
             case 3 ->
             case 4 ->
