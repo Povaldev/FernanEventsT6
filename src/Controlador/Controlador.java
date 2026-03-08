@@ -2,6 +2,9 @@ package Controlador;
 
 import Modelo.Entradas.*;
 import Modelo.Evento;
+import Modelo.Usuario.Administrador;
+import Modelo.Usuario.GestionUsuario;
+import Modelo.Usuario.Organizador;
 import Vista.*;
 
 import java.time.LocalDate;
@@ -10,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static Modelo.Evento.*;
+import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Vista.Vista.*;
 
 public class Controlador{
@@ -17,35 +21,37 @@ public class Controlador{
 
 
     public static void Bienvenida(){
-        int opcion = 0;
+        int opcion;
         do {
             Vista.muestraMensaje(menuGeneral());
-            do {
-                switch (opcion){
-                    case 1:
-                        Vista.muestraMensaje(Vista.menuAdministrador());
-                        opcion = s.nextInt();
-                        break;
-                    case 2:
-                        Vista.muestraMensaje(Vista.menuOrganizador());
-                        opcion = s.nextInt();
-                        break;
-                    case 3:
-                        Vista.muestraMensaje(Vista.menuAsistente());
-                        opcion = s.nextInt();
-                        break;
-                    case 4:
-                        Vista.muestraMensaje("Abandonando el programa...");
-                        break;
-                    default:
-                        Vista.muestraMensaje("Por favor, introduce alguna de las opciones que se muestran");
-                        break;
-                }
-            } while (opcion > 1 && opcion  3);
-        } while (opcion == 4);
-
+            opcion = s.nextInt();
+            switch (opcion){
+                case 1 -> iniciaSesion();
+                case 2 -> registro();
+                case 3 -> Vista.muestraMensaje("Abandonando el programa...");
+                default -> Vista.muestraMensaje("Por favor, introduce alguna de las opciones que se muestran\n");
+            }
+        } while (opcion != 3);
     }
 
+    public static void menuAdministrador(){
+        Vista.muestraMensaje(Vista.menuAdministrador());
+        switch (s.nextInt()){
+
+        }
+    }
+
+
+    public static void menuOrganizador(){
+        int opcion;
+        Vista.menuOrganizador();
+    }
+
+
+
+    public static void menuAsistente(){
+
+    }
 
     public static Evento creaEvento(){
         Vista.muestraMensaje("Introduce el nombre del evento: ");
@@ -108,14 +114,14 @@ public class Controlador{
             Vista.muestraMensaje("Introduce el aforo máximo permitido del evento: ");
             int aforo = s.nextInt();
             evento.modificaEvento(nombre, descripcion, categoria, fecha, hora, aforo);
-        } else Vista.muestraMensaje("Ha ocurrido un error. Revise el ID introducido");
+        } else Vista.muestraMensaje("Ha ocurrido un error. Revise el ID introducido\n");
     }
 
     public static void eliminaEvento(int idEvento){
         if (buscaPosicionPorID(idEvento) != -1){
             Evento.eliminaEvento(idEvento);
-            Vista.muestraMensaje("Evento eliminado con éxito");
-        } else Vista.muestraMensaje("Ha ocurrido un error al intentar eliminar el evento");
+            Vista.muestraMensaje("Evento eliminado con éxito\n");
+        } else Vista.muestraMensaje("Ha ocurrido un error al intentar eliminar el evento\n");
     }
 
     public void creaEntrada(int idEvento){
@@ -137,11 +143,11 @@ public class Controlador{
     }
 
     public static void recogeDatosEntrada(int idEvento, TipoEntrada tipo){
-        Vista.muestraMensaje("Introduce el precio de la entrada");
+        Vista.muestraMensaje("Introduce el precio de la entrada: ");
         int precio = s.nextInt();
-        Vista.muestraMensaje("Introduce la descripción de la entrada");
+        Vista.muestraMensaje("Introduce la descripción de la entrada: ");
         String descipcion = s.nextLine();
-        Vista.muestraMensaje("Introduce la cantidad de entradas disponibles");
+        Vista.muestraMensaje("Introduce la cantidad de entradas disponibles: ");
         int stock = s.nextInt();
         Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
     }
@@ -165,12 +171,49 @@ public class Controlador{
 
 
     public static void iniciaSesion(){
-
+        boolean datosCorrectos;
+        muestraMensaje("**** INICIO DE SESIÓN ****\n");
+        do {
+            muestraMensaje("- Introduce el correo: ");
+            String correo = s.nextLine();
+            muestraMensaje("Introduce la contraseña: ");
+            String contrasena = s.nextLine();
+            datosCorrectos = GestionUsuario.iniciarSesion(correo, contrasena);
+            if (!datosCorrectos) Vista.muestraMensaje("Alguno de los campos introducidos es erroneo\n");
+        } while (!datosCorrectos);
+        if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador){
+            menuAdministrador();
+        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador) {
+            menuOrganizador();
+        } else {
+            menuAsistente();
+        }
     }
 
 
-    public static void cambiaContrasena(){
 
+    public static void registro(){
+        int tipoUsuario;
+        String correo;
+        Vista.muestraMensaje(Vista.registro());
+        switch (s.nextInt()){
+            case 1 -> tipoUsuario = 1;
+            case 2 -> tipoUsuario = 2;
+            case 3 -> tipoUsuario = 3;
+            case 4 -> Vista.muestraMensaje("Saliendo...");
+            default -> Vista.muestraMensaje("Introduzca alguna de las opciones");
+        }
+        do{
+            Vista.muestraMensaje("Introduzca su correo: ");
+            correo = s.nextLine();
+            if (GestionUsuario.compruebaCorreo(correo)) Vista.muestraMensaje("El correo introducido ya existe");
+        } while (GestionUsuario.compruebaCorreo(correo));
+
+
+        Vista.muestraMensaje("Introduce la contraseña: ");
+    }
+
+    public static void cambiaContrasena(){
 
 
     }

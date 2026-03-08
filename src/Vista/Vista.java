@@ -1,7 +1,5 @@
 package Vista;
 
-import java.util.Scanner;
-
 public class Vista {
 
     public static String menuGeneral(){
@@ -19,42 +17,51 @@ public class Vista {
                 "███████╗   ╚██╔╝   ██║ ╚████║███████╗██║ ╚████║   ██║   ███████║\n" +
                 "╚══════╝    ╚═╝    ╚═╝   ╚══╝╚══════╝╚═╝   ╚══╝   ╚═╝   ╚══════╝\n\n" +
                 "             G E S T I Ó N   D E   E V E N T O S\n";
-        muestra += "Bienvenido a FernanEvents, ¿Como deseas acceder?";
-        muestra += "1--Administrador";
-        muestra += "2--Organizador";
-        muestra += "3--Asistente";
-        muestra += "4--Salir";
+        muestra += "Bienvenido a FernanEvents, ¿Como deseas acceder?\n";
+        muestra += "1-- Iniciar Sesión\n";
+        muestra += "2-- Registrarse\n";
+        muestra += "3-- Salir\n";
         return muestra;
     }
 
 
-    public static String menuAsistente(){
-        String muestra = "Bienvenido al Administrador";
-        muestra += "1--Panel de control";
-        muestra += "2--Eventos";
-        muestra += "3--Cartera Digital";
-        muestra += "4--Configuración";
-        muestra += "5--Cerrar sesión";
-        return muestra;
-    }
-
-    public static String menuOrganizador(){
-        String muestra = "Bienvenido al Organizador";
-        muestra += "1--Mis eventos";
-        muestra += "2--Cartera digital";
-        muestra += "3__Configuración";
-        muestra += "4--Cerrar sesión";
+    public static String registro(){
+        String muestra = ("**** REGISTRO ****\n");
+        muestra += "¿Como desea registarse?";
+        muestra += "1. Administrador";
+        muestra += "2. Organizador";
+        muestra += "3. Asistente";
+        muestra += "4. Salir";
         return muestra;
     }
 
     public static String menuAdministrador(){
-        String muestra = "Bienvenido al Asistente ";
-        muestra += "1--Mis eventos";
-        muestra += "2--Eventos";
-        muestra += "3--Cartera digital";
-        muestra += "4--Invita a un amigo";
-        muestra += "5__Configuración";
-        muestra += "6--Cerrar sesión";
+        String muestra = "----Bienvenido al Asistente----\n";
+        muestra += "1--Mis eventos\n";
+        muestra += "2--Eventos\n";
+        muestra += "3--Cartera digital\n";
+        muestra += "4--Invita a un amigo\n";
+        muestra += "5__Configuración\n";
+        muestra += "6--Cerrar sesión\n";
+        return muestra;
+    }
+
+    public static String menuOrganizador(){
+        String muestra = "----Bienvenido al Organizador----\n";
+        muestra += "1--Mis eventos\n";
+        muestra += "2--Cartera digital\n";
+        muestra += "3__Configuración\n";
+        muestra += "4--Cerrar sesión\n";
+        return muestra;
+    }
+
+    public static String menuAsistente(){
+        String muestra = "----Bienvenido al Administrador----\n";
+        muestra += "1--Panel de control\n";
+        muestra += "2--Eventos\n";
+        muestra += "3--Cartera Digital\n";
+        muestra += "4--Configuración\n";
+        muestra += "5--Cerrar sesión\n";
         return muestra;
     }
 
@@ -64,11 +71,11 @@ public class Vista {
     }
 
     public static void muestraMensaje(String mensaje){
-        System.out.println(mensaje);
+        System.out.print(mensaje);
     }
 
     public static void muestraCategoria(){
-        String muestraCategoria = "Introduce la categoría del evento\n";
+        String muestraCategoria = "-- Introduce la categoría del evento --\n";
         muestraCategoria += "1. Arte\n";
         muestraCategoria += "2. Tecnología\n";
         muestraCategoria += "3. Cine\n";
@@ -108,10 +115,10 @@ public class Vista {
 //    }
 
     public static void creaEntrada(int idEvento){
-        Vista.muestraMensaje("- Selecciona las entradas que tendrá el evento");
-        System.out.println("1. General");
-        System.out.println("2. General y Premium");
-        System.out.println("3. General, Premium y VIP");
+        Vista.muestraMensaje("-- Selecciona las entradas que tendrá el evento --\n");
+        System.out.println("1. General\n");
+        System.out.println("2. General y Premium\n");
+        System.out.println("3. General, Premium y VIP\n");
     }
 
 

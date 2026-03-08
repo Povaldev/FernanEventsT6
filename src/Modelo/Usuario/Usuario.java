@@ -2,9 +2,6 @@ package Modelo.Usuario;
 
 public class Usuario {
 
-
-    public static int IDusuarioActual;
-
     private String nombre , contrasena, correo;
     private double saldo;
     private boolean bloqueado;
@@ -17,7 +14,9 @@ public class Usuario {
         this.saldo = 0;
     }
 
+    public static void registroUsuario(){
 
+    }
 
     public String getNombre() {
         return nombre;
