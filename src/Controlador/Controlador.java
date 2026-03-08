@@ -2,9 +2,7 @@ package Controlador;
 
 import Modelo.Entradas.*;
 import Modelo.Evento;
-import Modelo.Usuario.Administrador;
-import Modelo.Usuario.GestionUsuario;
-import Modelo.Usuario.Organizador;
+import Modelo.Usuario.*;
 import Vista.*;
 
 import java.time.LocalDate;
@@ -193,24 +191,31 @@ public class Controlador{
 
 
     public static void registro(){
-        int tipoUsuario;
         String correo;
         Vista.muestraMensaje(Vista.registro());
-        switch (s.nextInt()){
-            case 1 -> tipoUsuario = 1;
-            case 2 -> tipoUsuario = 2;
-            case 3 -> tipoUsuario = 3;
-            case 4 -> Vista.muestraMensaje("Saliendo...");
-            default -> Vista.muestraMensaje("Introduzca alguna de las opciones");
+        int tipoUsuario = s.nextInt();
+        if (tipoUsuario < 1 || tipoUsuario > 4){
+            Vista.muestraMensaje("Introduzca alguna de las opciones\n");
+        } else if (tipoUsuario == 4){
+            Vista.muestraMensaje("Saliendo...");
+        } else{
+            do {
+                Vista.muestraMensaje("Introduzca su correo: ");
+                correo = s.nextLine();
+                if (GestionUsuario.compruebaCorreo(correo)) Vista.muestraMensaje("El correo introducido ya existe\n");
+            } while (GestionUsuario.compruebaCorreo(correo));
+            Vista.muestraMensaje("Introduzca su nombre: ");
+            String nombre = s.nextLine();
+            Vista.muestraMensaje("Introduce la contraseña: ");
+            String contrasena = s.nextLine();
+             switch (tipoUsuario){
+                case 1 -> Administrador.registraAdministrador(new Administrador(nombre, correo, contrasena));
+                case 2 -> Organizador.registraOrganizador(new Organizador(nombre, correo, contrasena));
+                case 3 -> Asistente.registraAsistente(new Asistente(nombre, correo, contrasena));
+            }
         }
-        do{
-            Vista.muestraMensaje("Introduzca su correo: ");
-            correo = s.nextLine();
-            if (GestionUsuario.compruebaCorreo(correo)) Vista.muestraMensaje("El correo introducido ya existe");
-        } while (GestionUsuario.compruebaCorreo(correo));
 
 
-        Vista.muestraMensaje("Introduce la contraseña: ");
     }
 
     public static void cambiaContrasena(){

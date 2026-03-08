@@ -7,15 +7,11 @@ public class Usuario {
     private boolean bloqueado;
 
 
-    public Usuario(String nombre, String contrasena, String correo) {
+    public Usuario(String nombre, String correo, String contrasena) {
         this.nombre = nombre;
-        this.contrasena = contrasena;
         this.correo = correo;
+        this.contrasena = contrasena;
         this.saldo = 0;
-    }
-
-    public static void registroUsuario(){
-
     }
 
     public String getNombre() {
