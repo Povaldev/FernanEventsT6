@@ -36,6 +36,30 @@ public class Controlador{
     }
 
     public static void menuAdministrador(){
+        Vista.muestraMensaje(Vista.menuAsistente());
+        switch (s.nextInt()){
+            case 1 -> // Panel de control (Para bloquear y desbloquear usuarios
+            case 2 -> GestionEvento.muestraEventos();
+            case 3 -> // Cartera digital
+            case 4 -> // Configuracion
+            case 5 -> cerrarSesion();
+        }
+    }
+
+
+    public static void menuOrganizador(){
+        Vista.muestraMensaje(Vista.menuOrganizador());
+        switch (s.nextInt()){
+            case 1 -> // Eventos creados por el organizador
+            case 2 -> // Cartera del Organizador
+            case 3 -> // Configuracion
+            case 4 -> cerrarSesion();
+        }
+    }
+
+
+
+    public static void menuAsistente(){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
             case 1 -> //Eventos inscritos por el usuario
@@ -45,20 +69,6 @@ public class Controlador{
             case 5 -> //Configuracion
             case 6 -> cerrarSesion();
         }
-    }
-
-
-    public static void menuOrganizador(){
-        int opcion;
-        Vista.muestraMensaje(Vista.menuOrganizador());
-    }
-
-
-
-    public static void menuAsistente(){
-        int opcion;
-        Vista.muestraMensaje(Vista.menuAsistente());
-
     }
 
     public static Evento creaEvento(){
