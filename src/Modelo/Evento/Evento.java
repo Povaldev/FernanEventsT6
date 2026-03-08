@@ -1,5 +1,6 @@
-package Modelo;
+package Modelo.Evento;
 
+import Controlador.Controlador;
 import Modelo.Entradas.Entrada;
 import Vista.Vista;
 
@@ -7,9 +8,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Evento {
-    public static Evento[] eventos = new Evento[20];
 
-    private static int generaIDsEventos = 0, cantEventosCreados = 0;
+    public Entrada[] entradas;
+    private static int generaIDsEventos = 0;
     private String nombre, descripcion, categoria;
     private LocalDate fecha;
     private LocalTime hora;
@@ -26,16 +27,13 @@ public class Evento {
         this.hora = hora;
         this.aforo = aforo;
         this.idEvento = generaIDsEventos++;
-        cantEventosCreados++;
+        this.entradas = new Entrada[Controlador.creaEntradaEvento()];
+        GestionEvento.setCantEventosCreados(GestionEvento.getCantEventosCreados()+1);
     }
 
 
     public static int getGeneraIDsEventos() {
         return generaIDsEventos;
-    }
-
-    public static int getCantEventosCreados() {
-        return cantEventosCreados;
     }
 
     public String getNombre() {
@@ -78,10 +76,6 @@ public class Evento {
         Evento.generaIDsEventos = generaIDsEventos;
     }
 
-    public static void setCantEventosCreados(int cantEventosCreados) {
-        Evento.cantEventosCreados = cantEventosCreados;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -120,15 +114,15 @@ public class Evento {
 
 
     public static Evento buscaEventoPorID(int idEvento){
-        for (int i = 0; i < getCantEventosCreados(); i++) {
-            if (eventos[i].getIdEvento()==idEvento) return eventos[i];
+        for (int i = 0; i < GestionEvento.getCantEventosCreados(); i++) {
+            if (GestionEvento.eventos[i].getIdEvento()==idEvento) return GestionEvento.eventos[i];
         }
         return null;
     }
 
     public static int buscaPosicionPorID(int idEvento){
-        for (int i = 0; i < getCantEventosCreados(); i++) {
-            if (eventos[i].getIdEvento() == idEvento) return i;
+        for (int i = 0; i < GestionEvento.getCantEventosCreados(); i++) {
+            if (GestionEvento.eventos[i].getIdEvento() == idEvento) return i;
         }
         return -1;
     }
@@ -149,16 +143,12 @@ public class Evento {
     }
 
     public static void eliminaEvento(int idEvento){
-        eventos[idEvento] = eventos[getCantEventosCreados()];
-        eventos[getCantEventosCreados()] = null;
+        GestionEvento.eventos[idEvento] = GestionEvento.eventos[GestionEvento.getCantEventosCreados()];
+        GestionEvento.eventos[GestionEvento.getCantEventosCreados()] = null;
     }
 
 
-    public void muestraEventos(){
-        for (int i = 0; i < getCantEventosCreados(); i++) {
-            Vista.muestraMensaje(eventos[i].toString());
-        }
-    }
+
 
 
 

@@ -122,5 +122,14 @@ public class Vista {
     }
 
 
+    public static void creaEntradaEvento(){
+        System.out.println("Selecciona los tipos de entradas que podrá tener este evento (Debes de seleccionar al menos 1)");
+        System.out.println("1. General");
+        System.out.println("2. General y Premium");
+        System.out.println("3. General, Premium y VIP");
+    }
+
+
+
 
 }

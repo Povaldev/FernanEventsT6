@@ -1,16 +1,19 @@
 package Controlador;
 
 import Modelo.Entradas.*;
-import Modelo.Evento;
+import Modelo.Evento.Evento;
+import Modelo.Evento.GestionEvento;
 import Modelo.Usuario.*;
 import Vista.*;
+import com.sun.source.tree.BreakTree;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import static Modelo.Evento.*;
+import static Modelo.Entradas.Entrada.entradas;
+import static Modelo.Evento.Evento.*;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Vista.Vista.*;
 
@@ -35,11 +38,11 @@ public class Controlador{
     public static void menuAdministrador(){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
-            case 1 ->
-            case 2 ->
-            case 3 ->
-            case 4 ->
-            case 5 ->
+            case 1 -> //Eventos inscritos por el usuario
+            case 2 -> GestionEvento.muestraEventos();
+            case 3 -> // Cartera Digital
+            case 4 -> // Invita a un amigo
+            case 5 -> //Configuracion
             case 6 -> cerrarSesion();
         }
     }
@@ -86,6 +89,11 @@ public class Controlador{
         Vista.muestraMensaje("Introduce el aforo máximo permitido del evento: ");
         int aforo = s.nextInt();
         return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
+    }
+
+    public static int creaEntradaEvento(){
+        Vista.creaEntradaEvento();
+        return s.nextInt();
     }
 
     public static void modificaEvento(int idEvento){
