@@ -14,7 +14,7 @@ public class Evento {
     private String nombre, descripcion, categoria;
     private LocalDate fecha;
     private LocalTime hora;
-    private int aforo, numInscritos, idEvento;
+    private int aforo, numInscritos, idEvento, cantEntradas;
 
 
 
@@ -28,6 +28,11 @@ public class Evento {
         this.idEvento = generaIDsEventos++;
         Controlador.creaEntrada(this.getIdEvento());
         GestionEvento.setCantEventosCreados(GestionEvento.getCantEventosCreados()+1);
+    }
+
+    public static void enlazaEntradaAEvento(Entrada entrada, int idEvento){
+        int posicion = buscaPosicionPorID(idEvento);
+        GestionEvento.eventos[posicion].tipoEntradas[GestionEvento.eventos[posicion].getCantEntradas()] = entrada;
     }
 
     public static int getGeneraIDsEventos() {
@@ -66,8 +71,8 @@ public class Evento {
         return idEvento;
     }
 
-    public Entrada getEntrada() {
-        return entrada;
+    public int getCantEntradas() {
+        return cantEntradas;
     }
 
     public static void setGeneraIDsEventos(int generaIDsEventos) {
@@ -106,6 +111,9 @@ public class Evento {
         this.idEvento = idEvento;
     }
 
+    public void setCantEntradas(int cantEntradas) {
+        this.cantEntradas = cantEntradas;
+    }
 
     public static Evento buscaEventoPorID(int idEvento){
         for (int i = 0; i < GestionEvento.getCantEventosCreados(); i++) {

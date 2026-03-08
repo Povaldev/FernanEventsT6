@@ -5,14 +5,11 @@ import Modelo.Evento.Evento;
 import Modelo.Evento.GestionEvento;
 import Modelo.Usuario.*;
 import Vista.*;
-import com.sun.source.tree.BreakTree;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
-import static Modelo.Entradas.Entrada.entradas;
 import static Modelo.Evento.Evento.*;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Vista.Vista.*;
@@ -139,7 +136,7 @@ public class Controlador{
         String descipcion = s.nextLine();
         Vista.muestraMensaje("Introduce la cantidad de entradas disponibles: ");
         int stock = s.nextInt();
-        Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
+        enlazaEntradaAEvento(new Entrada(tipo, precio, descipcion, stock, idEvento), idEvento);
     }
 
     public static void modificaEvento(int idEvento){
@@ -182,22 +179,6 @@ public class Controlador{
             Vista.muestraMensaje("Evento eliminado con éxito\n");
         } else Vista.muestraMensaje("Ha ocurrido un error al intentar eliminar el evento\n");
     }
-
-
-//    public static int seleccionEventoPorNombre(){
-//       for (int i = 0; i < eventoCreado.length; i++) {
-//            if (eventoCreado[i]) {
-//                System.out.println(idEvento[i] + ". " + nombreEvento[i]);
-//            }
-//       }
-//
-//
-//        int seleccionUsuario = s.nextInt();
-//
-//        for (int i = 0; i < eventoCreado.length; i++) if (seleccionUsuario == idEvento[i]) return i;
-//        System.out.println("El ID introducido no existe");
-//        return -1;
-//    }
 
 
 
