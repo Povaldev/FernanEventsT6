@@ -167,11 +167,8 @@ public class Evento {
                 "Nombre: " + this.nombre + "\n" +
                 "Descripcion: " + this.descripcion + "\n" +
                 "Categoría: " + this.categoria + "\n" +
-                "Fecha y hora: " + this.fecha + this.hora + "\n" +
-                "Aforo: " + this.aforo + "\n" +
-                "Nombre: " + this.nombre + "\n" +
-                vistaDetalladaEvento() + "\n" +
-
-                ;
+                "Fecha "  + this.fecha + " Hora: " + this.hora + "\n" +
+                "Aforo máximo: " + this.aforo + "\n" +
+                vistaDetalladaEvento() + "\n";
     }
 }

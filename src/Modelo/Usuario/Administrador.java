@@ -11,6 +11,10 @@ public class Administrador extends Usuario{
 
     }
 
+    public String misEventos(){
+        String eventos
+    }
+
 
 
 

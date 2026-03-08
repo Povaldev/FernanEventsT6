@@ -35,19 +35,26 @@ public class Controlador{
     public static void menuAdministrador(){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
-
+            case 1 -> misEventos
+            case 2 ->
+            case 3 ->
+            case 4 ->
+            case 5 ->
+            case 6 -> cerrarSesion();
         }
     }
 
 
     public static void menuOrganizador(){
         int opcion;
-        Vista.menuOrganizador();
+        Vista.muestraMensaje(Vista.menuOrganizador());
     }
 
 
 
     public static void menuAsistente(){
+        int opcion;
+        Vista.muestraMensaje(Vista.menuAsistente());
 
     }
 
@@ -204,10 +211,10 @@ public class Controlador{
                 correo = s.nextLine();
                 if (GestionUsuario.compruebaCorreo(correo)) Vista.muestraMensaje("El correo introducido ya existe\n");
             } while (GestionUsuario.compruebaCorreo(correo));
-            Vista.muestraMensaje("Introduzca su nombre: ");
-            String nombre = s.nextLine();
             Vista.muestraMensaje("Introduce la contraseña: ");
             String contrasena = s.nextLine();
+            Vista.muestraMensaje("Introduzca su nombre: ");
+            String nombre = s.nextLine();
              switch (tipoUsuario){
                 case 1 -> Administrador.registraAdministrador(new Administrador(nombre, correo, contrasena));
                 case 2 -> Organizador.registraOrganizador(new Organizador(nombre, correo, contrasena));
@@ -221,6 +228,12 @@ public class Controlador{
     public static void cambiaContrasena(){
 
 
+    }
+
+
+    public static void cerrarSesion(){
+        posArrayUsuarioActual = -1;
+        Bienvenida();
     }
 
 

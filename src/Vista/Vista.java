@@ -18,9 +18,9 @@ public class Vista {
                 "╚══════╝    ╚═╝    ╚═╝   ╚══╝╚══════╝╚═╝   ╚══╝   ╚═╝   ╚══════╝\n\n" +
                 "             G E S T I Ó N   D E   E V E N T O S\n";
         muestra += "Bienvenido a FernanEvents, ¿Como deseas acceder?\n";
-        muestra += "1-- Iniciar Sesión\n";
-        muestra += "2-- Registrarse\n";
-        muestra += "3-- Salir\n";
+        muestra += "1--Iniciar Sesión\n";
+        muestra += "2--Registrarse\n";
+        muestra += "3--Salir\n";
         return muestra;
     }
 
@@ -41,7 +41,7 @@ public class Vista {
         muestra += "2--Eventos\n";
         muestra += "3--Cartera digital\n";
         muestra += "4--Invita a un amigo\n";
-        muestra += "5__Configuración\n";
+        muestra += "5--Configuración\n";
         muestra += "6--Cerrar sesión\n";
         return muestra;
     }
@@ -50,7 +50,7 @@ public class Vista {
         String muestra = "----Bienvenido al Organizador----\n";
         muestra += "1--Mis eventos\n";
         muestra += "2--Cartera digital\n";
-        muestra += "3__Configuración\n";
+        muestra += "3--Configuración\n";
         muestra += "4--Cerrar sesión\n";
         return muestra;
     }
