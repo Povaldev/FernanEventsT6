@@ -9,13 +9,12 @@ import java.time.LocalTime;
 
 public class Evento {
 
-    public Entrada[] entradas;
+    public Entrada[] tipoEntradas;
     private static int generaIDsEventos = 0;
     private String nombre, descripcion, categoria;
     private LocalDate fecha;
     private LocalTime hora;
     private int aforo, numInscritos, idEvento;
-    private Entrada entrada;
 
 
 
@@ -27,10 +26,9 @@ public class Evento {
         this.hora = hora;
         this.aforo = aforo;
         this.idEvento = generaIDsEventos++;
-        this.entradas = new Entrada[Controlador.creaEntradaEvento()];
+        Controlador.creaEntrada(this.getIdEvento());
         GestionEvento.setCantEventosCreados(GestionEvento.getCantEventosCreados()+1);
     }
-
 
     public static int getGeneraIDsEventos() {
         return generaIDsEventos;
@@ -106,10 +104,6 @@ public class Evento {
 
     public void setIdEvento(int idEvento) {
         this.idEvento = idEvento;
-    }
-
-    public void setEntrada(Entrada entrada) {
-        this.entrada = entrada;
     }
 
 

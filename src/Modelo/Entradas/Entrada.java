@@ -1,9 +1,13 @@
 package Modelo.Entradas;
 
-public class Entrada {
-    public static Entrada[] entradas = new Entrada[60];
+import Modelo.Evento.Evento;
+import Modelo.Evento.GestionEvento;
+import Modelo.Usuario.Asistente;
+
+public class Entrada implements InterfazEntrada {
     private static int cantidadEntradasCreadas;
 
+    private Asistente asistente;
     private int EventoID, stock;
     private double precio;
     private String descripcion;
@@ -15,11 +19,9 @@ public class Entrada {
         this.descripcion = descripcion;
         this.stock = stock;
         this.EventoID = EventoID;
+        this.asistente = null;
     }
 
-    public static void creaEntrada(Entrada entrada){
-        entradas[getCantidadEntradasCreadas()] = entrada;
-    }
 
     public boolean compraEntrada(){
         if (getStock()>0){
@@ -29,6 +31,9 @@ public class Entrada {
         return false;
     }
 
+    public static void creaEntrada(Entrada entrada){
+        GestionEvento.
+    }
 
 
     public static int getCantidadEntradasCreadas() {
@@ -77,5 +82,15 @@ public class Entrada {
 
     public void setTipoEntrada(TipoEntrada tipoEntrada) {
         this.tipoEntrada = tipoEntrada;
+    }
+
+    @Override
+    public void aumentaCantidad() {
+
+    }
+
+    @Override
+    public void disminuyeCantidad() {
+
     }
 }

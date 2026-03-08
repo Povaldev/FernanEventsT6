@@ -1,7 +1,10 @@
 package Modelo.Usuario;
 
-public class Usuario {
+import Modelo.Entradas.Entrada;
 
+public class Usuario {
+    private Entrada[] entradas = new Entrada[20];
+    private int entradasCompradas;
     private String nombre , contrasena, correo;
     private double saldo;
     private boolean bloqueado;
@@ -39,6 +42,10 @@ public class Usuario {
         this.correo = correo;
     }
 
+
+    public static compraEntrada(){
+
+    }
 
 
 }

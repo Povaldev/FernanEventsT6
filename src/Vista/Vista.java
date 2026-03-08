@@ -114,19 +114,12 @@ public class Vista {
 //        }
 //    }
 
-    public static void creaEntrada(int idEvento){
-        Vista.muestraMensaje("-- Selecciona las entradas que tendrá el evento --\n");
-        System.out.println("1. General\n");
-        System.out.println("2. General y Premium\n");
-        System.out.println("3. General, Premium y VIP\n");
-    }
-
-
-    public static void creaEntradaEvento(){
-        System.out.println("Selecciona los tipos de entradas que podrá tener este evento (Debes de seleccionar al menos 1)");
-        System.out.println("1. General");
-        System.out.println("2. General y Premium");
-        System.out.println("3. General, Premium y VIP");
+    public static String creaEntradaEvento(int idEvento){
+        String muestra = "-- Selecciona las entrada/s que tendrá el evento --\n";
+        muestra += "1. General\n";
+        muestra += "2. General, Premium\n";
+        muestra += "3. General, Premium, VIP\n";
+        return muestra;
     }
 
 
