@@ -101,28 +101,34 @@ public class Controlador{
         return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
     }
 
-    public static int creaEntrada(int idEvento){
+    public static void creaEntrada(int idEvento){
         Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
         int opcion = s.nextInt();
-
-        do {
-            switch (opcion){
-                case 1:
-                    Vista.muestraMensaje("-- Definición de la entrada General --\n");
-                    recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
-                break;
-                case 2:
-                    Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
-                    recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
-                    break;
-                case 3:
-                    Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
-                    recogeDatosEntrada(idEvento, TipoEntrada.VIP);
-                    break;
-            }
-            opcion++;
-        } while (opcion==4);
-        return s.nextInt();
+        if (opcion>1 && opcion<5){
+            int repeticiones = switch (opcion){
+                case 1 -> 3;
+                case 2 -> 2;
+                case 3 -> 1;
+                default -> 0;
+            };
+            do {
+                switch (repeticiones){
+                    case 1:
+                        Vista.muestraMensaje("-- Definición de la entrada General --\n");
+                        recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
+                        break;
+                    case 2:
+                        Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
+                        recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
+                        break;
+                    case 3:
+                        Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
+                        recogeDatosEntrada(idEvento, TipoEntrada.VIP);
+                        break;
+                }
+                repeticiones++;
+            } while (repeticiones!=4);
+        } else Vista.muestraMensaje("No ha introducido ninguna opcion de la pantalla");
     }
 
 

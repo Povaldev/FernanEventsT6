@@ -119,6 +119,7 @@ public class Vista {
         muestra += "1. General\n";
         muestra += "2. General, Premium\n";
         muestra += "3. General, Premium, VIP\n";
+        muestra += "4. Salir \n";
         return muestra;
     }
 
