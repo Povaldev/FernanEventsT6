@@ -1,7 +1,5 @@
 package Modelo.Entradas;
 
-import Modelo.Evento.Evento;
-import Modelo.Evento.GestionEvento;
 import Modelo.Usuario.Asistente;
 
 public class Entrada implements InterfazEntrada {
@@ -31,9 +29,9 @@ public class Entrada implements InterfazEntrada {
         return false;
     }
 
-//    public static void creaEntrada(Entrada entrada){
-//        GestionEvento.
-//    }
+    public static void creaEntrada(Entrada entrada){
+
+    }
 
 
 

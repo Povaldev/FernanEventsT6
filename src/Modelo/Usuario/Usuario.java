@@ -1,6 +1,5 @@
 package Modelo.Usuario;
 
-import Modelo.Entradas.Entrada;
 
 public class Usuario {
 
@@ -8,6 +7,7 @@ public class Usuario {
     private String nombre , contrasena, correo;
     private double saldo;
     private boolean bloqueado;
+    private int id, asignaID = 0;
 
 
     public Usuario(String nombre, String correo, String contrasena) {
@@ -15,6 +15,7 @@ public class Usuario {
         this.correo = correo;
         this.contrasena = contrasena;
         this.saldo = 0;
+        this.id = asignaID++;
     }
 
     public String getNombre() {
@@ -29,6 +30,9 @@ public class Usuario {
         return correo;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -42,8 +46,11 @@ public class Usuario {
         this.correo = correo;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-//    public static compraEntrada(){
+    //    public static compraEntrada(){
 //
 //    }
 

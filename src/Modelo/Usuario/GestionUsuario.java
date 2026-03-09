@@ -6,7 +6,7 @@ public class GestionUsuario {
     public static int posArrayUsuarioActual;
 
     public static boolean iniciarSesion(String correo, String contrasena){
-        for (int i = 0; i < cantUsuariosRegistrados; i++) {
+        for (int i = 0; i < getCantUsuariosRegistrados(); i++) {
             if (usuarios[i].getCorreo().equals(correo)){
 
                 if (usuarios[i].getContrasena().equals(contrasena)){
@@ -17,6 +17,10 @@ public class GestionUsuario {
             }
         }
         return false;
+    }
+
+    public static int getCantUsuariosRegistrados() {
+        return cantUsuariosRegistrados;
     }
 
     public static boolean compruebaCorreo(String correo){

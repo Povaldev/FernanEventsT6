@@ -109,41 +109,6 @@ public class Controlador{
     }
 
 
-//    public static int creaEntrada(int idEvento){
-//        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
-//        int opcion = s.nextInt();
-//
-//        do {
-//            switch (opcion){
-//                case 1:
-//                    Vista.muestraMensaje("-- Definición de la entrada General --\n");
-//                    recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
-//                break;
-//                case 2:
-//                    Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
-//                    recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
-//                    break;
-//                case 3:
-//                    Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
-//                    recogeDatosEntrada(idEvento, TipoEntrada.VIP);
-//                    break;
-//            }
-//            opcion++;
-//        } while (opcion==4);
-//        return s.nextInt();
-//    }
-//
-//
-//    public static void recogeDatosEntrada(int idEvento, TipoEntrada tipo){
-//        Vista.muestraMensaje("Introduce el precio de la entrada: ");
-//        int precio = s.nextInt();
-//        Vista.muestraMensaje("Introduce la descripción de la entrada: ");
-//        String descipcion = s.nextLine();
-//        Vista.muestraMensaje("Introduce la cantidad de entradas disponibles: ");
-//        int stock = s.nextInt();
-//        Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
-//    }
-
     public static void creaEntrada(int idEvento){
         Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
         int opcion = s.nextInt();

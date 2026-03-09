@@ -1,6 +1,11 @@
 package Modelo.Usuario;
 
-public class Organizador extends Usuario {//implements Bloqueable{
+import Modelo.Evento.Evento;
+
+public class Organizador extends Usuario { //implements Bloqueable{
+
+    public Evento[] eventos = new Evento[20];
+    int cantEventosCreados;
 
 
     public Organizador(String nombre, String correo, String contrasena) {
@@ -26,6 +31,7 @@ public class Organizador extends Usuario {//implements Bloqueable{
 
         return getBloqueo();
     }
+
 
 //    @Override
 //    public void desbloquear() {
