@@ -43,9 +43,9 @@ public class Usuario {
     }
 
 
-    public static compraEntrada(){
-
-    }
+//    public static compraEntrada(){
+//
+//    }
 
 
 }

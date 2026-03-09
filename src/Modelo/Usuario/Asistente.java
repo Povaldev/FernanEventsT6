@@ -10,7 +10,7 @@ public class Asistente extends Usuario implements Bloqueable{
 
 
     public static void registraAsistente(Asistente asistente){
-        GestionUsuario.usuarios[GestionUsuario.cantUsuariosRegistrados] = asistente;
+        GestionUsuario.usuarios[GestionUsuario.cantUsuariosRegistrados++] = asistente;
     }
 
 

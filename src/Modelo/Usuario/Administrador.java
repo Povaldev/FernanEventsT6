@@ -7,13 +7,13 @@ public class Administrador extends Usuario{
     }
 
     public static void registraAdministrador(Administrador administrador){
-        GestionUsuario.usuarios[GestionUsuario.cantUsuariosRegistrados] = administrador;
+        GestionUsuario.usuarios[GestionUsuario.cantUsuariosRegistrados++] = administrador;
 
     }
 
-    public String misEventos(){
-        String eventos
-    }
+//    public String misEventos(){
+//        String eventos
+//    }
 
 
 

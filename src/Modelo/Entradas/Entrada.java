@@ -31,9 +31,9 @@ public class Entrada implements InterfazEntrada {
         return false;
     }
 
-    public static void creaEntrada(Entrada entrada){
-        GestionEvento.
-    }
+//    public static void creaEntrada(Entrada entrada){
+//        GestionEvento.
+//    }
 
 
     public static int getCantidadEntradasCreadas() {

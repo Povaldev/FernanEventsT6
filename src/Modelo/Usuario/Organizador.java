@@ -8,7 +8,7 @@ public class Organizador extends Usuario implements Bloqueable{
     }
 
     public static void registraOrganizador(Organizador organizador){
-        GestionUsuario.usuarios[GestionUsuario.cantUsuariosRegistrados] = organizador;
+        GestionUsuario.usuarios[GestionUsuario.cantUsuariosRegistrados++] = organizador;
     }
 
     @Override

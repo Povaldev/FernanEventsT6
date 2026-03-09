@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import static Modelo.Entradas.Entrada.entradas;
+
 import static Modelo.Evento.Evento.*;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Vista.Vista.*;
@@ -38,10 +38,10 @@ public class Controlador{
     public static void menuAdministrador(){
         Vista.muestraMensaje(Vista.menuAsistente());
         switch (s.nextInt()){
-            case 1 -> // Panel de control (Para bloquear y desbloquear usuarios
+//            case 1 -> // Panel de control (Para bloquear y desbloquear usuarios
             case 2 -> GestionEvento.muestraEventos();
-            case 3 -> // Cartera digital
-            case 4 -> // Configuracion
+//            case 3 -> // Cartera digital
+//            case 4 -> // Configuracion
             case 5 -> cerrarSesion();
         }
     }
@@ -50,9 +50,9 @@ public class Controlador{
     public static void menuOrganizador(){
         Vista.muestraMensaje(Vista.menuOrganizador());
         switch (s.nextInt()){
-            case 1 -> // Eventos creados por el organizador
-            case 2 -> // Cartera del Organizador
-            case 3 -> // Configuracion
+//            case 1 -> // Eventos creados por el organizador
+//            case 2 -> // Cartera del Organizador
+//            case 3 -> // Configuracion
             case 4 -> cerrarSesion();
         }
     }
@@ -62,11 +62,11 @@ public class Controlador{
     public static void menuAsistente(){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
-            case 1 -> //Eventos inscritos por el usuario
+//            case 1 -> //Eventos inscritos por el usuario
             case 2 -> GestionEvento.muestraEventos();
-            case 3 -> // Cartera Digital
-            case 4 -> // Invita a un amigo
-            case 5 -> //Configuracion
+//            case 3 -> // Cartera Digital
+//            case 4 -> // Invita a un amigo
+//            case 5 -> //Configuracion
             case 6 -> cerrarSesion();
         }
     }
@@ -101,40 +101,40 @@ public class Controlador{
         return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
     }
 
-    public static int creaEntrada(int idEvento){
-        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
-        int opcion = s.nextInt();
+//    public static int creaEntrada(int idEvento){
+//        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
+//        int opcion = s.nextInt();
+//
+//        do {
+//            switch (opcion){
+//                case 1:
+//                    Vista.muestraMensaje("-- Definición de la entrada General --\n");
+//                    recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
+//                break;
+//                case 2:
+//                    Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
+//                    recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
+//                    break;
+//                case 3:
+//                    Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
+//                    recogeDatosEntrada(idEvento, TipoEntrada.VIP);
+//                    break;
+//            }
+//            opcion++;
+//        } while (opcion==4);
+//        return s.nextInt();
+//    }
 
-        do {
-            switch (opcion){
-                case 1:
-                    Vista.muestraMensaje("-- Definición de la entrada General --\n");
-                    recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
-                break;
-                case 2:
-                    Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
-                    recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
-                    break;
-                case 3:
-                    Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
-                    recogeDatosEntrada(idEvento, TipoEntrada.VIP);
-                    break;
-            }
-            opcion++;
-        } while (opcion==4);
-        return s.nextInt();
-    }
 
-
-    public static void recogeDatosEntrada(int idEvento, TipoEntrada tipo){
-        Vista.muestraMensaje("Introduce el precio de la entrada: ");
-        int precio = s.nextInt();
-        Vista.muestraMensaje("Introduce la descripción de la entrada: ");
-        String descipcion = s.nextLine();
-        Vista.muestraMensaje("Introduce la cantidad de entradas disponibles: ");
-        int stock = s.nextInt();
-        Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
-    }
+//    public static void recogeDatosEntrada(int idEvento, TipoEntrada tipo){
+//        Vista.muestraMensaje("Introduce el precio de la entrada: ");
+//        int precio = s.nextInt();
+//        Vista.muestraMensaje("Introduce la descripción de la entrada: ");
+//        String descipcion = s.nextLine();
+//        Vista.muestraMensaje("Introduce la cantidad de entradas disponibles: ");
+//        int stock = s.nextInt();
+//        Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
+//    }
 
     public static void modificaEvento(int idEvento){
         Evento evento = buscaEventoPorID(idEvento);
@@ -200,9 +200,9 @@ public class Controlador{
         muestraMensaje("**** INICIO DE SESIÓN ****\n");
         do {
             muestraMensaje("- Introduce el correo: ");
-            String correo = s.nextLine();
+            String correo = s.next();
             muestraMensaje("Introduce la contraseña: ");
-            String contrasena = s.nextLine();
+            String contrasena = s.next();
             datosCorrectos = GestionUsuario.iniciarSesion(correo, contrasena);
             if (!datosCorrectos) Vista.muestraMensaje("Alguno de los campos introducidos es erroneo\n");
         } while (!datosCorrectos);
@@ -220,21 +220,22 @@ public class Controlador{
     public static void registro(){
         String correo;
         Vista.muestraMensaje(Vista.registro());
-        int tipoUsuario = s.nextInt();
+        int tipoUsuario = Integer.parseInt(s.next());
         if (tipoUsuario < 1 || tipoUsuario > 4){
             Vista.muestraMensaje("Introduzca alguna de las opciones\n");
         } else if (tipoUsuario == 4){
             Vista.muestraMensaje("Saliendo...");
         } else{
+
             do {
                 Vista.muestraMensaje("Introduzca su correo: ");
-                correo = s.nextLine();
+                correo = s.next();
                 if (GestionUsuario.compruebaCorreo(correo)) Vista.muestraMensaje("El correo introducido ya existe\n");
             } while (GestionUsuario.compruebaCorreo(correo));
             Vista.muestraMensaje("Introduce la contraseña: ");
-            String contrasena = s.nextLine();
+            String contrasena = s.next();
             Vista.muestraMensaje("Introduzca su nombre: ");
-            String nombre = s.nextLine();
+            String nombre = s.next();
              switch (tipoUsuario){
                 case 1 -> Administrador.registraAdministrador(new Administrador(nombre, correo, contrasena));
                 case 2 -> Organizador.registraOrganizador(new Organizador(nombre, correo, contrasena));

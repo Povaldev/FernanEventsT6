@@ -66,9 +66,9 @@ public class Vista {
     }
 
 
-    public static String inscripcionEventoPago(){
-
-    }
+//    public static String inscripcionEventoPago(){
+//
+//    }
 
     public static void muestraMensaje(String mensaje){
         System.out.print(mensaje);
