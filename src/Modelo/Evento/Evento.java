@@ -26,7 +26,7 @@ public class Evento {
         this.hora = hora;
         this.aforo = aforo;
         this.idEvento = generaIDsEventos++;
-//        Controlador.creaEntrada(this.getIdEvento());
+        Controlador.creaEntrada(this.getIdEvento());
         GestionEvento.setCantEventosCreados(GestionEvento.getCantEventosCreados()+1);
     }
 
@@ -71,13 +71,14 @@ public class Evento {
         return idEvento;
     }
 
-<<<<<<< HEAD
+
     public Entrada[] getEntrada() {
         return tipoEntradas;
-=======
+    }
+
     public int getCantEntradas() {
         return cantEntradas;
->>>>>>> f7d6c4145d51326249c20bde0f4f68de6a5cc8d2
+
     }
 
     public static void setGeneraIDsEventos(int generaIDsEventos) {

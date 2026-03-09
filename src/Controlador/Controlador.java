@@ -10,11 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> f7d6c4145d51326249c20bde0f4f68de6a5cc8d2
 import static Modelo.Evento.Evento.*;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Vista.Vista.*;
@@ -38,9 +34,9 @@ public class Controlador{
     }
 
     public static void menuAdministrador(){
-        Vista.muestraMensaje(Vista.menuAsistente());
+        Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
-//            case 1 -> // Panel de control (Para bloquear y desbloquear usuarios
+            case 1 -> bloquearUsuarios();
             case 2 -> GestionEvento.muestraEventos();
 //            case 3 -> // Cartera digital
 //            case 4 -> // Configuracion
@@ -50,19 +46,28 @@ public class Controlador{
 
 
     public static void menuOrganizador(){
-        Vista.muestraMensaje(Vista.menuOrganizador());
-        switch (s.nextInt()){
+        if (Organizador.bloquear()){
+
+            Vista.muestraMensaje("El organizador esta bloqueado, pida a un administrador que se desbloque");
+
+        }else {
+
+            Vista.muestraMensaje(Vista.menuOrganizador());
+            switch (s.nextInt()){
 //            case 1 -> // Eventos creados por el organizador
 //            case 2 -> // Cartera del Organizador
 //            case 3 -> // Configuracion
-            case 4 -> cerrarSesion();
+                case 4 -> cerrarSesion();
+            }
+
         }
+
     }
 
 
 
     public static void menuAsistente(){
-        Vista.muestraMensaje(Vista.menuAdministrador());
+        Vista.muestraMensaje(Vista.menuAsistente());
         switch (s.nextInt()){
 //            case 1 -> //Eventos inscritos por el usuario
             case 2 -> GestionEvento.muestraEventos();
@@ -103,7 +108,7 @@ public class Controlador{
         return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
     }
 
-<<<<<<< HEAD
+
 //    public static int creaEntrada(int idEvento){
 //        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
 //        int opcion = s.nextInt();
@@ -127,8 +132,8 @@ public class Controlador{
 //        } while (opcion==4);
 //        return s.nextInt();
 //    }
-
-
+//
+//
 //    public static void recogeDatosEntrada(int idEvento, TipoEntrada tipo){
 //        Vista.muestraMensaje("Introduce el precio de la entrada: ");
 //        int precio = s.nextInt();
@@ -138,7 +143,7 @@ public class Controlador{
 //        int stock = s.nextInt();
 //        Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
 //    }
-=======
+
     public static void creaEntrada(int idEvento){
         Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
         int opcion = s.nextInt();
@@ -179,7 +184,7 @@ public class Controlador{
         int stock = s.nextInt();
         enlazaEntradaAEvento(new Entrada(tipo, precio, descipcion, stock, idEvento), idEvento);
     }
->>>>>>> f7d6c4145d51326249c20bde0f4f68de6a5cc8d2
+
 
     public static void modificaEvento(int idEvento){
         Evento evento = buscaEventoPorID(idEvento);
@@ -253,7 +258,7 @@ public class Controlador{
         if (tipoUsuario < 1 || tipoUsuario > 4){
             Vista.muestraMensaje("Introduzca alguna de las opciones\n");
         } else if (tipoUsuario == 4){
-            Vista.muestraMensaje("Saliendo...");
+            Vista.muestraMensaje("Saliendo...\n");
         } else{
 
             do {
@@ -286,7 +291,25 @@ public class Controlador{
         Bienvenida();
     }
 
+    public static void bloquearUsuarios(){
 
+        Vista.menuPanelDeControl();
+
+        Vista.muestraMensaje("Introduzca el usuario");
+        String usuario=s.next();
+        Vista.muestraMensaje("Introduzca la contraseña");
+        String contraseña=s.next();
+
+        if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador){
+            Vista.muestraMensaje("El admin no se puede bloquear");
+        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador) {
+            Organizador.setBloqueo(true);
+        } else {
+            menuAsistente();
+        }
+
+
+    }
 
 
 

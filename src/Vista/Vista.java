@@ -27,15 +27,15 @@ public class Vista {
 
     public static String registro(){
         String muestra = ("**** REGISTRO ****\n");
-        muestra += "¿Como desea registarse?";
-        muestra += "1. Administrador";
-        muestra += "2. Organizador";
-        muestra += "3. Asistente";
-        muestra += "4. Salir";
+        muestra += "¿Como desea registarse?\n";
+        muestra += "1. Administrador\n";
+        muestra += "2. Organizador\n";
+        muestra += "3. Asistente\n";
+        muestra += "4. Salir\n";
         return muestra;
     }
 
-    public static String menuAdministrador(){
+    public static String menuAsistente(){
         String muestra = "----Bienvenido al Asistente----\n";
         muestra += "1--Mis eventos\n";
         muestra += "2--Eventos\n";
@@ -55,13 +55,22 @@ public class Vista {
         return muestra;
     }
 
-    public static String menuAsistente(){
-        String muestra = "----Bienvenido al Administrador----\n";
+    public static String menuAdministrador(){
+        String muestra = "---Bienvenido al Administrador----\n";
         muestra += "1--Panel de control\n";
         muestra += "2--Eventos\n";
         muestra += "3--Cartera Digital\n";
         muestra += "4--Configuración\n";
         muestra += "5--Cerrar sesión\n";
+        return muestra;
+    }
+
+
+
+    public static String menuPanelDeControl(){
+        String muestra = "----Panel de control----\n";
+        muestra += "Escriba los datos del usuario al que desea bloquear/desbloquear\n";
+
         return muestra;
     }
 

@@ -20,6 +20,8 @@ public class Asistente extends Usuario implements Bloqueable{
     @Override
     public void bloquear() {
 
+
+
     }
 
     @Override
