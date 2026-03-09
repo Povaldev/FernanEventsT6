@@ -1,8 +1,11 @@
 package Modelo.Usuario;
 
-import java.util.Scanner;
+import Modelo.Entradas.Entrada;
+
 
 public class Asistente extends Usuario implements Bloqueable{
+
+    private Entrada[] entradas = new Entrada[20];
 
     public Asistente(String nombre, String correo, String contrasena) {
         super(nombre, correo, contrasena);

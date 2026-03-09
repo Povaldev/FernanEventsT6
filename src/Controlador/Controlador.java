@@ -5,14 +5,16 @@ import Modelo.Evento.Evento;
 import Modelo.Evento.GestionEvento;
 import Modelo.Usuario.*;
 import Vista.*;
-import com.sun.source.tree.BreakTree;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f7d6c4145d51326249c20bde0f4f68de6a5cc8d2
 import static Modelo.Evento.Evento.*;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Vista.Vista.*;
@@ -101,6 +103,7 @@ public class Controlador{
         return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
     }
 
+<<<<<<< HEAD
 //    public static int creaEntrada(int idEvento){
 //        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
 //        int opcion = s.nextInt();
@@ -135,6 +138,48 @@ public class Controlador{
 //        int stock = s.nextInt();
 //        Entrada.creaEntrada(new Entrada(tipo, precio, descipcion, stock, idEvento));
 //    }
+=======
+    public static void creaEntrada(int idEvento){
+        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
+        int opcion = s.nextInt();
+        if (opcion>1 && opcion<5){
+            int repeticiones = switch (opcion){
+                case 1 -> 3;
+                case 2 -> 2;
+                case 3 -> 1;
+                default -> 0;
+            };
+            do {
+                switch (repeticiones){
+                    case 1:
+                        Vista.muestraMensaje("-- Definición de la entrada General --\n");
+                        recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
+                        break;
+                    case 2:
+                        Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
+                        recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
+                        break;
+                    case 3:
+                        Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
+                        recogeDatosEntrada(idEvento, TipoEntrada.VIP);
+                        break;
+                }
+                repeticiones++;
+            } while (repeticiones!=4);
+        } else Vista.muestraMensaje("No ha introducido ninguna opcion de la pantalla");
+    }
+
+
+    public static void recogeDatosEntrada(int idEvento, TipoEntrada tipo){
+        Vista.muestraMensaje("Introduce el precio de la entrada: ");
+        int precio = s.nextInt();
+        Vista.muestraMensaje("Introduce la descripción de la entrada: ");
+        String descipcion = s.nextLine();
+        Vista.muestraMensaje("Introduce la cantidad de entradas disponibles: ");
+        int stock = s.nextInt();
+        enlazaEntradaAEvento(new Entrada(tipo, precio, descipcion, stock, idEvento), idEvento);
+    }
+>>>>>>> f7d6c4145d51326249c20bde0f4f68de6a5cc8d2
 
     public static void modificaEvento(int idEvento){
         Evento evento = buscaEventoPorID(idEvento);
@@ -176,22 +221,6 @@ public class Controlador{
             Vista.muestraMensaje("Evento eliminado con éxito\n");
         } else Vista.muestraMensaje("Ha ocurrido un error al intentar eliminar el evento\n");
     }
-
-
-//    public static int seleccionEventoPorNombre(){
-//       for (int i = 0; i < eventoCreado.length; i++) {
-//            if (eventoCreado[i]) {
-//                System.out.println(idEvento[i] + ". " + nombreEvento[i]);
-//            }
-//       }
-//
-//
-//        int seleccionUsuario = s.nextInt();
-//
-//        for (int i = 0; i < eventoCreado.length; i++) if (seleccionUsuario == idEvento[i]) return i;
-//        System.out.println("El ID introducido no existe");
-//        return -1;
-//    }
 
 
 

@@ -31,10 +31,13 @@ public class Entrada implements InterfazEntrada {
         return false;
     }
 
+<<<<<<< HEAD
 //    public static void creaEntrada(Entrada entrada){
 //        GestionEvento.
 //    }
 
+=======
+>>>>>>> f7d6c4145d51326249c20bde0f4f68de6a5cc8d2
 
     public static int getCantidadEntradasCreadas() {
         return cantidadEntradasCreadas;
