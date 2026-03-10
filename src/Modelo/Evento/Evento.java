@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 public class Evento {
 
-    public Entrada[] tipoEntradas;
+    public Entrada[] tipoEntradas = new Entrada[3];
     private static int generaIDsEventos = 0;
     private String nombre, descripcion, categoria;
     private LocalDate fecha;
@@ -27,11 +27,12 @@ public class Evento {
         this.aforo = aforo;
         this.idEvento = generaIDsEventos++;
         Controlador.creaEntrada(this.getIdEvento());
-        GestionEvento.setCantEventosCreados(GestionEvento.getCantEventosCreados()+1);
+        GestionEvento.setCantEventosCreados(++GestionEvento.cantEventosCreados);
     }
 
     public static void enlazaEntradaAEvento(Entrada entrada, int idEvento){
         int posicion = buscaPosicionPorID(idEvento);
+        // Del objeto almacenado en el array de objetos en "Gestión de objetos" se le asigna a su array de eventos "tipoEntradas" la entrada que se le pasa al metodo
         GestionEvento.eventos[posicion].tipoEntradas[GestionEvento.eventos[posicion].getCantEntradas()] = entrada;
     }
 
@@ -78,7 +79,6 @@ public class Evento {
 
     public int getCantEntradas() {
         return cantEntradas;
-
     }
 
     public static void setGeneraIDsEventos(int generaIDsEventos) {
@@ -150,10 +150,7 @@ public class Evento {
         Vista.muestraMensaje(nombre + " ha sido modificado con éxito");
     }
 
-    public static void eliminaEvento(int idEvento){
-        GestionEvento.eventos[idEvento] = GestionEvento.eventos[GestionEvento.getCantEventosCreados()];
-        GestionEvento.eventos[GestionEvento.getCantEventosCreados()] = null;
-    }
+
 
 
 

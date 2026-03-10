@@ -8,9 +8,7 @@ public class GestionUsuario {
     public static boolean iniciarSesion(String correo, String contrasena){
         for (int i = 0; i < getCantUsuariosRegistrados(); i++) {
             if (usuarios[i].getCorreo().equals(correo)){
-
                 if (usuarios[i].getContrasena().equals(contrasena)){
-
                     posArrayUsuarioActual = i;
                     return true;
                 }

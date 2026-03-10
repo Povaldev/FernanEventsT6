@@ -5,7 +5,7 @@ import Modelo.Evento.Evento;
 public class Organizador extends Usuario { //implements Bloqueable{
 
     public Evento[] eventos = new Evento[20];
-    int cantEventosCreados;
+    public int cantEventosCreados;
 
 
     public Organizador(String nombre, String correo, String contrasena) {

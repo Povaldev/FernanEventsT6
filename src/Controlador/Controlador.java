@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import static Modelo.Evento.Evento.*;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
+import static Modelo.Usuario.GestionUsuario.usuarios;
 import static Vista.Vista.*;
 
 public class Controlador{
@@ -33,11 +34,11 @@ public class Controlador{
         } while (opcion != 3);
     }
 
-    public static void menuAdministrador(){
+    public static void menuAdministrador(int administradorID){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
             case 1 -> bloquearUsuarios();
-            case 2 -> GestionEvento.muestraEventos();
+            case 2 -> submenuEventos(administradorID);
 //            case 3 -> // Cartera digital
 //            case 4 -> // Configuracion
             case 5 -> cerrarSesion();
@@ -45,28 +46,50 @@ public class Controlador{
     }
 
 
-    public static void menuOrganizador(){
+    public static void menuOrganizador(int organizadorID){
+        int opcion;
         if (Organizador.bloquear()){
-
             Vista.muestraMensaje("El organizador esta bloqueado, pida a un administrador que se desbloque");
-
         }else {
+            do {
+                Vista.muestraMensaje(Vista.menuOrganizador());
+                opcion = s.nextInt();
+                switch (opcion){
+                    case 1 -> submenuEventos(organizadorID);
+                    // case 2 -> // Cartera del Organizador
+                    // case 3 -> // Configuracion
+                    case 4 -> cerrarSesion();
+                }
+            } while (opcion==4);
 
-            Vista.muestraMensaje(Vista.menuOrganizador());
-            switch (s.nextInt()){
-//            case 1 -> // Eventos creados por el organizador
-//            case 2 -> // Cartera del Organizador
-//            case 3 -> // Configuracion
-                case 4 -> cerrarSesion();
-            }
 
         }
 
     }
 
+    public static void submenuEventos(int organizadorID){
+        Vista.muestraMensaje(Vista.submenuEventosOrganizador(organizadorID));
+        switch (s.nextInt()){
+            case 1:
+                Vista.muestraMensaje("Introduce el ID del evento que desea modificar: ");
+                modificaEvento(s.nextInt());
+                break;
+            case 2:
+                Vista.muestraMensaje("Introduce el ID del evento que desea eliminar: ");
+                eliminaEvento(s.nextInt());
+                break;
+            case 3:
+                Vista.muestraMensaje("Saliendo...\n");
+                break;
+            default:
+                Vista.muestraMensaje("Introduce alguna de las opciones correspondientes");
+                break;
+        }
+    }
 
 
-    public static void menuAsistente(){
+
+    public static void menuAsistente(int asistenteID){
         Vista.muestraMensaje(Vista.menuAsistente());
         switch (s.nextInt()){
 //            case 1 -> //Eventos inscritos por el usuario
@@ -78,7 +101,7 @@ public class Controlador{
         }
     }
 
-    public static Evento creaEvento(){
+    public static void creaEvento(){
         Vista.muestraMensaje("Introduce el nombre del evento: ");
         String nombre = s.nextLine();
         Vista.muestraMensaje("Escribe la descripción del evento: ");
@@ -105,38 +128,35 @@ public class Controlador{
         LocalTime hora = LocalTime.parse(horaStr, formatoh);
         Vista.muestraMensaje("Introduce el aforo máximo permitido del evento: ");
         int aforo = s.nextInt();
-        return new Evento(nombre, descripcion, categoria, fecha, hora, aforo);
+        GestionEvento.creaEvento(new Evento(nombre, descripcion, categoria, fecha, hora, aforo));
     }
 
 
     public static void creaEntrada(int idEvento){
-        Vista.muestraMensaje(Vista.creaEntradaEvento(idEvento));
-        int opcion = s.nextInt();
-        if (opcion>1 && opcion<5){
-            int repeticiones = switch (opcion){
-                case 1 -> 3;
-                case 2 -> 2;
-                case 3 -> 1;
-                default -> 0;
-            };
-            do {
-                switch (repeticiones){
-                    case 1:
-                        Vista.muestraMensaje("-- Definición de la entrada General --\n");
-                        recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
-                        break;
-                    case 2:
-                        Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
-                        recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
-                        break;
-                    case 3:
-                        Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
-                        recogeDatosEntrada(idEvento, TipoEntrada.VIP);
-                        break;
+        Vista.muestraMensaje(Vista.creaEntradaEvento());
+        int correspondencia = s.nextInt();
+        if (correspondencia>1 && correspondencia<5){
+            if (correspondencia == 4){
+                Vista.muestraMensaje("Saliendo...");
+            } else {
+                for (int i = 1; i <= correspondencia; i++) {
+                    switch (i){
+                        case 1:
+                            Vista.muestraMensaje("-- Definición de la entrada General --\n");
+                            recogeDatosEntrada(idEvento, TipoEntrada.GENERAL);
+                            break;
+                        case 2:
+                            Vista.muestraMensaje("-- Definición de la entrada Premium --\n");
+                            recogeDatosEntrada(idEvento, TipoEntrada.PREMIUM);
+                            break;
+                        case 3:
+                            Vista.muestraMensaje("-- Definición de la entrada VIP --\n");
+                            recogeDatosEntrada(idEvento, TipoEntrada.VIP);
+                            break;
+                    }
                 }
-                repeticiones++;
-            } while (repeticiones!=4);
-        } else Vista.muestraMensaje("No ha introducido ninguna opcion de la pantalla");
+            }
+        } else Vista.muestraMensaje("No ha introducido ninguna opción de la pantalla");
     }
 
 
@@ -187,11 +207,10 @@ public class Controlador{
 
     public static void eliminaEvento(int idEvento){
         if (buscaPosicionPorID(idEvento) != -1){
-            Evento.eliminaEvento(idEvento);
+            GestionEvento.eliminaEvento(idEvento);
             Vista.muestraMensaje("Evento eliminado con éxito\n");
         } else Vista.muestraMensaje("Ha ocurrido un error al intentar eliminar el evento\n");
     }
-
 
 
     public static void iniciaSesion(){
@@ -205,12 +224,12 @@ public class Controlador{
             datosCorrectos = GestionUsuario.iniciarSesion(correo, contrasena);
             if (!datosCorrectos) Vista.muestraMensaje("Alguno de los campos introducidos es erroneo\n");
         } while (!datosCorrectos);
-        if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador){
-            menuAdministrador();
-        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador) {
-            menuOrganizador();
-        } else {
-            menuAsistente();
+        if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador administrador){
+            menuAdministrador(usuarios[posArrayUsuarioActual].getId());
+        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador organizador) {
+            menuOrganizador(usuarios[posArrayUsuarioActual].getId());
+        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Asistente asistente){
+            menuAsistente(usuarios[posArrayUsuarioActual].getId());
         }
     }
 
@@ -263,14 +282,14 @@ public class Controlador{
         Vista.muestraMensaje("Introduzca el usuario");
         String usuario=s.next();
         Vista.muestraMensaje("Introduzca la contraseña");
-        String contraseña=s.next();
+        String contrasena=s.next();
 
         if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador){
             Vista.muestraMensaje("El admin no se puede bloquear");
         } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador) {
             Organizador.setBloqueo(true);
         } else {
-            menuAsistente();
+            //menuAsistente();
         }
 
 

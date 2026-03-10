@@ -1,5 +1,12 @@
 package Vista;
 
+import Modelo.Evento.GestionEvento;
+import Modelo.Usuario.GestionUsuario;
+import Modelo.Usuario.Organizador;
+import Modelo.Usuario.Usuario;
+
+import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
+
 public class Vista {
 
     public static String menuGeneral(){
@@ -52,6 +59,18 @@ public class Vista {
         muestra += "2--Cartera digital\n";
         muestra += "3--Configuración\n";
         muestra += "4--Cerrar sesión\n";
+        return muestra;
+    }
+
+    public static String submenuEventosOrganizador(int organizadorID){
+        Organizador organizador = (Organizador) GestionUsuario.usuarios[posArrayUsuarioActual];
+        String muestra = "--- Eventos Creados ----";
+        for (int i = 0; i < GestionEvento.cantEventosCreados; i++) {
+            muestra += organizador.eventos[i].toString();
+        }
+        Vista.muestraMensaje("1. Modificar Evento");
+        Vista.muestraMensaje("2. Eliminar Evento");
+        Vista.muestraMensaje("3. Salir");
         return muestra;
     }
 
@@ -123,7 +142,7 @@ public class Vista {
 //        }
 //    }
 
-    public static String creaEntradaEvento(int idEvento){
+    public static String creaEntradaEvento(){
         String muestra = "-- Selecciona las entrada/s que tendrá el evento --\n";
         muestra += "1. General\n";
         muestra += "2. General, Premium\n";
