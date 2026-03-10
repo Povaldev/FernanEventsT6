@@ -164,6 +164,7 @@ public class Evento {
                 "Categoría: " + this.categoria + "\n" +
                 "Fecha "  + this.fecha + " Hora: " + this.hora + "\n" +
                 "Aforo máximo: " + this.aforo + "\n" +
-                vistaDetalladaEvento() + "\n";
+                vistaDetalladaEvento() + "\n" +
+                "*********************************";
     }
 }

@@ -9,9 +9,12 @@ import Vista.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static Modelo.Evento.Evento.*;
+import static Modelo.Evento.GestionEvento.cantEventosCreados;
+import static Modelo.Evento.GestionEvento.eventos;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
 import static Modelo.Usuario.GestionUsuario.usuarios;
 import static Vista.Vista.*;
@@ -34,11 +37,11 @@ public class Controlador{
         } while (opcion != 3);
     }
 
-    public static void menuAdministrador(int administradorID){
+    public static void menuAdministrador(){
         Vista.muestraMensaje(Vista.menuAdministrador());
         switch (s.nextInt()){
             case 1 -> bloquearUsuarios();
-            case 2 -> submenuEventos(administradorID);
+            case 2 -> submenuEventos();
 //            case 3 -> // Cartera digital
 //            case 4 -> // Configuracion
             case 5 -> cerrarSesion();
@@ -46,7 +49,7 @@ public class Controlador{
     }
 
 
-    public static void menuOrganizador(int organizadorID){
+    public static void menuOrganizador(){
         int opcion;
         if (Organizador.bloquear()){
             Vista.muestraMensaje("El organizador esta bloqueado, pida a un administrador que se desbloque");
@@ -55,7 +58,7 @@ public class Controlador{
                 Vista.muestraMensaje(Vista.menuOrganizador());
                 opcion = s.nextInt();
                 switch (opcion){
-                    case 1 -> submenuEventos(organizadorID);
+                    case 1 -> submenuEventos();
                     // case 2 -> // Cartera del Organizador
                     // case 3 -> // Configuracion
                     case 4 -> cerrarSesion();
@@ -67,9 +70,17 @@ public class Controlador{
 
     }
 
-    public static void submenuEventos(int organizadorID){
-        Vista.muestraMensaje(Vista.submenuEventosOrganizador(organizadorID));
-        switch (s.nextInt()){
+    public static void submenuEventos(){
+        Vista.muestraMensaje(Vista.submenuEventosOrganizador());
+        int opcion = s.nextInt();
+        if (cantEventosCreados==0){
+            switch (opcion){
+                case 1 -> creaEvento();
+                case 2 -> Vista.muestraMensaje("Saliendo...");
+                default -> Vista.muestraMensaje("Por favor, introduzca la opción correspondiente");
+            }
+        }
+        switch (opcion){
             case 1:
                 Vista.muestraMensaje("Introduce el ID del evento que desea modificar: ");
                 modificaEvento(s.nextInt());
@@ -79,6 +90,9 @@ public class Controlador{
                 eliminaEvento(s.nextInt());
                 break;
             case 3:
+                creaEvento();
+                break;
+            case 4:
                 Vista.muestraMensaje("Saliendo...\n");
                 break;
             default:
@@ -89,7 +103,7 @@ public class Controlador{
 
 
 
-    public static void menuAsistente(int asistenteID){
+    public static void menuAsistente(){
         Vista.muestraMensaje(Vista.menuAsistente());
         switch (s.nextInt()){
 //            case 1 -> //Eventos inscritos por el usuario
@@ -155,6 +169,7 @@ public class Controlador{
                             break;
                     }
                 }
+                eventos[GestionEvento.devuelvePosicionPorID(idEvento)].setCantEntradas(correspondencia);
             }
         } else Vista.muestraMensaje("No ha introducido ninguna opción de la pantalla");
     }
@@ -224,15 +239,14 @@ public class Controlador{
             datosCorrectos = GestionUsuario.iniciarSesion(correo, contrasena);
             if (!datosCorrectos) Vista.muestraMensaje("Alguno de los campos introducidos es erroneo\n");
         } while (!datosCorrectos);
-        if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador administrador){
-            menuAdministrador(usuarios[posArrayUsuarioActual].getId());
-        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador organizador) {
-            menuOrganizador(usuarios[posArrayUsuarioActual].getId());
-        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Asistente asistente){
-            menuAsistente(usuarios[posArrayUsuarioActual].getId());
+        if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Administrador){
+            menuAdministrador();
+        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Organizador) {
+            menuOrganizador();
+        } else if (GestionUsuario.usuarios[posArrayUsuarioActual] instanceof Asistente){
+            menuAsistente();
         }
     }
-
 
 
     public static void registro(){
@@ -260,9 +274,43 @@ public class Controlador{
                 case 3 -> Asistente.registraAsistente(new Asistente(nombre, correo, contrasena));
             }
         }
-
-
     }
+
+
+    public static void menuEventosAsistente(){
+        GestionEvento.muestraEventos();
+        Vista.muestraMensaje("- ¿Desea comprar una entrada para un evento? (s/n)");
+        if (s.next().equals("s")){
+            // TODO controlar que no hayan 2 nombres iguales entre eventos al crear un evento
+            Vista.muestraMensaje("Introduce el nomrbe del evento al que se quiere inscribir: ");
+            String nombreEvento = s.next();
+            int eventoID = GestionEvento.devuelveIDPorNombre(nombreEvento);
+            if (eventoID == -1) Vista.muestraMensaje("El nombre que ha introducido no corresponde a ningún evento");
+            else compraEntrada(eventoID);
+        }
+    }
+
+    /// Función en el que el usuario visualiza las entradas del evento que ha seleccionado anteriormente y recoge el tipo de entrada que desea comprar
+    /// Posteriormente se llama al metodo especifico del Asistente "compraEntrada". Para ello se hace casting de la posicion de usuario actual del array general de usuarios de la clase GestionUsuario
+    public static void compraEntrada(int eventoID){
+        int posicionEvento = GestionEvento.devuelvePosicionPorID(eventoID);
+        Vista.muestraMensaje(Vista.compraEntrada(eventos[posicionEvento].getCantEntradas(), posicionEvento));
+        // Entrada que el user desea comprar
+        String tipoEntradaStr = s.next().toLowerCase();
+        int tipoEntrada = switch (tipoEntradaStr){
+            case "general" -> 0;
+            case "premium" -> 1;
+            case "vip" -> 2;
+            default -> -1;
+        };
+        if (tipoEntrada == -1) Vista.muestraMensaje("Por favor, introduce el tipo correspondiente");
+        else {
+            Asistente asistente = (Asistente) usuarios[posArrayUsuarioActual];
+            asistente.compraEntrada(eventoID, tipoEntrada);
+        }
+    }
+
+
 
     public static void cambiaContrasena(){
 

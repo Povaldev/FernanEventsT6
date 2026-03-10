@@ -92,4 +92,9 @@ public class Entrada implements InterfazEntrada {
     public void disminuyeCantidad() {
 
     }
+
+    //TODO hacer el toString de entrada
+    public String toString() {
+        return "";
+    }
 }

@@ -1,9 +1,10 @@
 package Modelo.Usuario;
 
 
+import Modelo.Entradas.Entrada;
+
 public class Usuario {
 
-    private int entradasCompradas;
     private String nombre , contrasena, correo;
     private double saldo;
     private boolean bloqueado;
@@ -50,9 +51,6 @@ public class Usuario {
         this.id = id;
     }
 
-    //    public static compraEntrada(){
-//
-//    }
 
 
 }

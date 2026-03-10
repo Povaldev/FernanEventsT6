@@ -5,7 +5,10 @@ import Modelo.Usuario.GestionUsuario;
 import Modelo.Usuario.Organizador;
 import Modelo.Usuario.Usuario;
 
+import static Modelo.Evento.GestionEvento.cantEventosCreados;
+import static Modelo.Evento.GestionEvento.eventos;
 import static Modelo.Usuario.GestionUsuario.posArrayUsuarioActual;
+import static Modelo.Usuario.GestionUsuario.usuarios;
 
 public class Vista {
 
@@ -62,17 +65,31 @@ public class Vista {
         return muestra;
     }
 
-    public static String submenuEventosOrganizador(int organizadorID){
-        Organizador organizador = (Organizador) GestionUsuario.usuarios[posArrayUsuarioActual];
-        String muestra = "--- Eventos Creados ----";
-        for (int i = 0; i < GestionEvento.cantEventosCreados; i++) {
-            muestra += organizador.eventos[i].toString();
+    public static String submenuEventosOrganizador(){
+        Organizador organizador = (Organizador) usuarios[posArrayUsuarioActual];
+        String muestra = "--- Eventos Creados ----\n";
+        if (cantEventosCreados==0){
+            muestra += "No hay ningún evento creado aún";
+            muestra += "1. Crear Evento\n";
+            muestra += "2. Salir";
         }
-        Vista.muestraMensaje("1. Modificar Evento");
-        Vista.muestraMensaje("2. Eliminar Evento");
-        Vista.muestraMensaje("3. Salir");
+        else {
+            for (int i = 0; i < GestionEvento.cantEventosCreados; i++) {
+                muestra += organizador.eventos[i].toString();
+            }
+            muestra += "1. Modificar Evento\n";
+            muestra += "2. Eliminar Evento";
+            muestra += "3. Crear evento";
+            muestra += "4. Salir";
+        }
         return muestra;
     }
+
+    public static String submenuEventosAdministrador(){
+
+    }
+
+
 
     public static String menuAdministrador(){
         String muestra = "---Bienvenido al Administrador----\n";
@@ -81,6 +98,23 @@ public class Vista {
         muestra += "3--Cartera Digital\n";
         muestra += "4--Configuración\n";
         muestra += "5--Cerrar sesión\n";
+        return muestra;
+    }
+    
+    public static String compraEntrada(int tipoEntradas, int posicionEvento){
+        String muestra = "";
+        if (tipoEntradas == 1){
+            muestra += eventos[posicionEvento].tipoEntradas[1].toString();
+        } else if (tipoEntradas == 2) {
+            muestra += eventos[posicionEvento].tipoEntradas[1].toString();
+            muestra += eventos[posicionEvento].tipoEntradas[2].toString();
+        } else if (tipoEntradas == 3) {
+            muestra += eventos[posicionEvento].tipoEntradas[1].toString();
+            muestra += eventos[posicionEvento].tipoEntradas[2].toString();
+            muestra += eventos[posicionEvento].tipoEntradas[3].toString();
+            
+        }
+        muestra += "Selecciona la entrada que desea comprar";
         return muestra;
     }
 
@@ -93,10 +127,6 @@ public class Vista {
         return muestra;
     }
 
-
-//    public static String inscripcionEventoPago(){
-//
-//    }
 
     public static void muestraMensaje(String mensaje){
         System.out.print(mensaje);
